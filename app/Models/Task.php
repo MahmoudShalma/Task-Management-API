@@ -57,4 +57,9 @@ class Task extends Model
             ->where('status', '!=', 'completed')
             ->count() === 0;
     }
+
+    public function canBeDeleted(): bool
+    {
+        return $this->dependents()->count() === 0;
+    }
 }

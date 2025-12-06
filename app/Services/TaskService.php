@@ -99,6 +99,10 @@ class TaskService
 
     public function deleteTask(Task $task): bool
     {
+        if (!$this->repository->canBeDeleted($task)) {
+            throw new \Exception('Cannot delete task. Other tasks depend on it.');
+        }
+
         return $this->repository->delete($task);
     }
 

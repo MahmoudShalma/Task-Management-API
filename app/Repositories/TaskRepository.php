@@ -56,4 +56,9 @@ class TaskRepository implements TaskRepositoryInterface
     {
         return $task->canBeCompleted();
     }
+
+    public function canBeDeleted(Task $task): bool
+    {
+        return $task->canBeDeleted();
+    }
 }

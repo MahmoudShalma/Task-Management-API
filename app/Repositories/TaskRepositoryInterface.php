@@ -22,4 +22,6 @@ interface TaskRepositoryInterface
     public function removeDependencies(Task $task, array $dependencyIds): Task;
 
     public function canBeCompleted(Task $task): bool;
+
+    public function canBeDeleted(Task $task): bool;
 }

@@ -376,7 +376,7 @@
 				{
 					"name": "Update Task Status (User)",
 					"request": {
-						"method": "PATCH",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",

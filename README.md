@@ -122,7 +122,7 @@ The API will be available at `http://localhost:8000`
 | GET | `/api/tasks` | List all tasks (filtered for users) | Authenticated |
 | POST | `/api/tasks` | Create a new task | Manager only |
 | GET | `/api/tasks/{id}` | Get task details | Authenticated |
-| PUT/PATCH | `/api/tasks/{id}` | Update task | Manager (full) / User (status only) |
+| PUT | `/api/tasks/{id}` | Update task | Manager (full) / User (status only) |
 | DELETE | `/api/tasks/{id}` | Delete task | Manager only |
 
 ### Task Dependencies

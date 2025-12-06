@@ -23,7 +23,7 @@ A robust and scalable RESTful API for managing tasks with role-based access cont
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/MahmoudShalma/Task-Management-API
 cd Task-Management-API
 ```
 

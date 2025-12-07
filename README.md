@@ -14,11 +14,52 @@ A robust and scalable RESTful API for managing tasks with role-based access cont
 
 ## Requirements
 
+### Option 1: Docker (Recommended)
+- Docker Desktop ([Download](https://www.docker.com/products/docker-desktop))
+- Docker Compose (included with Docker Desktop)
+
+### Option 2: Native Installation
 - PHP >= 8.2
 - Composer
 - SQLite or MySQL database
 
 ## Installation & Setup
+
+### 🐳 Docker Installation (Recommended)
+
+**Quick Start:**
+```bash
+# 1. Copy environment file
+cp .env.docker .env
+
+# 2. Build and start everything
+make setup
+
+# 3. Access the application
+# API: http://localhost:8000
+# PHPMyAdmin: http://localhost:8080
+```
+
+✅ That's it! See [Docker Quick Start Guide](DOCKER_QUICK_START.md) for details.
+
+**Common Commands:**
+```bash
+make up             # Start containers
+make down           # Stop containers
+make logs           # View logs
+make shell          # Access shell
+make test           # Run tests
+make help           # Show all commands
+```
+
+📚 **Docker Documentation:**
+- [Docker Quick Start](DOCKER_QUICK_START.md) - Get started in 5 minutes
+- [Docker Setup Guide](DOCKER_SETUP.md) - Detailed documentation
+- [Docker Commands](DOCKER_COMMANDS.md) - Command cheat sheet
+
+---
+
+### 💻 Native Installation
 
 ### 1. Clone the Repository
 

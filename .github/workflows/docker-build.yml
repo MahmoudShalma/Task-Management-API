@@ -1,0 +1,65 @@
+name: Docker Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      run: docker-compose build
+
+    - name: Start containers
+      run: docker-compose up -d
+
+    - name: Wait for containers to be ready
+      run: sleep 30
+
+    - name: Install dependencies
+      run: docker-compose exec -T app composer install
+
+    - name: Generate application key
+      run: docker-compose exec -T app php artisan key:generate
+
+    - name: Run migrations
+      run: docker-compose exec -T app php artisan migrate --force
+
+    - name: Run tests
+      run: docker-compose exec -T app php artisan test
+
+    - name: Check application health
+      run: curl -f http://localhost:8000/api/health || exit 1
+
+    - name: Stop containers
+      run: docker-compose down
+
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy results to GitHub Security
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif'
